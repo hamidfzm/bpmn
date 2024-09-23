@@ -1,0 +1,14 @@
+apiVersion: ctlptl.dev/v1alpha1
+kind: Cluster
+product: kind
+registry: bpmn-registry
+kindV1Alpha4Cluster:
+  name: bpmn
+  nodes:
+    - role: control-plane
+---
+apiVersion: ctlptl.dev/v1alpha1
+kind: Registry
+name: bpmn-registry
+port: 5008
+listenAddress: 127.0.0.1

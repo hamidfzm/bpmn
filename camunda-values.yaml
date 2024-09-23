@@ -1,0 +1,117 @@
+#
+# Camunda
+#
+global:
+  ingress:
+    enabled: true
+    className: nginx
+    host: "localhost"
+    pathType: Prefix
+  identity:
+    auth:
+      publicIssuerUrl: "http://localhost/auth/realms/camunda-platform"
+      operate:
+        redirectUrl: "http://localhost/operate"
+      tasklist:
+        redirectUrl: "http://localhost/tasklist"
+      optimize:
+        redirectUrl: "http://localhost/optimize"
+      webModeler:
+        redirectUrl: "http://localhost/modeler"
+      console:
+        redirectUrl: "http://localhost/console"
+      connectors:
+        redirectUrl: "http://localhost/connectors"
+  
+console:
+  image:
+    tag: 8.5.107
+  contextPath: "/console"
+
+connectors:
+  # https://hub.docker.com/r/camunda/connectors-bundle/tags
+  image:
+    repository: camunda/connectors-bundle
+    tag: 8.5.7
+
+operate:
+  image:
+    tag: 8.5.4
+  contextPath: "/operate"
+
+optimize:
+  image:
+    repository: camunda/optimize
+    tag: 8.5.5
+  contextPath: "/optimize"
+
+tasklist:
+  image:
+    tag: 8.5.2
+  contextPath: "/tasklist"
+
+webModeler:
+  # Camunda Enterprise repository.
+  # registry.camunda.cloud/web-modeler-ee
+  image:
+    # renovate: datasource=docker depName=camunda/web-modeler lookupName=registry.camunda.cloud/web-modeler-ee/modeler-restapi
+    tag: 8.5.8
+
+zeebe:
+  image:
+    tag: 8.5.3
+  contextPath: "/connectors"
+
+  clusterSize: "1"
+  partitionCount: "1"
+  replicationFactor: "1"
+
+  resources:
+    requests:
+      cpu: 800m
+      memory: 1200Mi
+    limits:
+      cpu: 960m
+      memory: 1920Mi
+
+zeebeGateway:
+  image:
+    tag: 8.5.3
+  contextPath: "/zeebe"
+
+  replicas: 1
+  resources:
+    requests:
+      cpu: 400m
+      memory: 450Mi
+    limits:
+      cpu: 400m
+      memory: 450Mi
+
+
+identity:
+  image:
+    tag: 8.4.12
+  contextPath: "/identity"
+  fullURL: "http://localhost/identity"
+
+identityKeycloak:
+  # https://hub.docker.com/r/bitnami/keycloak/tags
+  image:
+    repository: bitnami/keycloak
+    tag: 23.0.7
+  postgresql:
+    # https://hub.docker.com/r/bitnami/postgresql/tags
+    image:
+      repository: bitnami/postgresql
+      tag: 15.8.0
+
+#
+# Elasticsearch
+#
+
+elasticsearch:
+  # https://hub.docker.com/r/bitnami/elasticsearch/tags
+  image:
+    repository: bitnami/elasticsearch
+    tag: 8.12.2
