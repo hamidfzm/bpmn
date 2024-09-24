@@ -1,0 +1,17 @@
+{
+  "name": "bpmn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "repository": "git@github.com:hamidfzm/bpmn.git",
+  "author": "Hamid FzM <hamidfzm@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@camunda8/sdk": "^8.6.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
